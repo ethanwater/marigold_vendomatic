@@ -98,7 +98,7 @@ curl -X GET http://localhost:8080/inventory/Pop -i
 * Body: Quantity of the specified beverage
   
 **Failure**
-- Status Code: 500 Internal Server Error
+- Status Code: 404 Not Found
 
 ### Purchase a Beverage (PUT /inventory/{beverage_id})
 Attempts to purchase a specified beverage (Pop, Coffee, or Water). The API requires two quarters (inserted via the PUT / endpoint) to dispense a beverage.
@@ -113,7 +113,7 @@ curl -X PUT http://localhost:8080/inventory/Pop -i
 
 **Failure**
 - Status Code: 403 Forbidden - Insufficient quarters
-- Status Code: 404 Not Found - Invalid beverage_id
+- Status Code: 404 Not Found - Invalid beverage_id / Beverage Does not Exist
 - X-Coins: Number of coins to be accepted. || Number of coins (0/1)
 
 

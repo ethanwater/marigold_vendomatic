@@ -43,7 +43,7 @@ class VendoMatic:
     def vend(self, beverage_name):
         if not self.if_exists(beverage_name):
             logging.warning(f"vend::failed > invalid:NULL'")
-            return None, {'error': 'beverage does not exist.'}, 400 
+            return None, {'error': 'beverage does not exist.'}, 404 
 
         beverage = self.beverages[beverage_name]
         if beverage.quantity <= 0:
@@ -90,7 +90,10 @@ def return_change():
 
 @app.route('/inventory', methods=['GET'])
 def get_inventory():
-    return jsonify(vendomatic.get_inventory()), 200  
+    try:
+        return jsonify(vendomatic.get_inventory()), 200  
+    except:
+        return jsonify({"error": "internal system error, does the inventory exists? this shouldn't happen."}), 500 
 
 @app.route('/inventory/<string:beverage>', methods=['GET'])
 def get_beverage_quantity(beverage):
