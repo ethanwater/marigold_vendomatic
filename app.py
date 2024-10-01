@@ -111,7 +111,7 @@ def get_beverage_quantity(beverage):
         return jsonify(quantity), 200  
     else:
         beverages = ", ".join([beverage.name for beverage in vendomatic.beverages.values()])
-        return jsonify({"error": f"The input beverage does not exist. Beverafe is Case-Sensitive. Beverages available are: {beverages}"}), 404
+        return jsonify({"error": f"The input beverage does not exist. Beverage is Case-Sensitive. Beverages available are: {beverages}"}), 404
 
 @app.route('/inventory/<string:beverage>', methods=['PUT'])
 def vend_beverage(beverage):
