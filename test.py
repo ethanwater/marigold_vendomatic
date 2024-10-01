@@ -8,7 +8,6 @@ def test(task, func):
     except AssertionError as e:
         print(f"❌ {task} failed: {e}")
 
-
 def test_add_quarter():
     conn = http.client.HTTPConnection("localhost", 8080)
     headers = {'Content-Type': 'application/json'}
@@ -50,7 +49,7 @@ def test_purchase_beverage():
 
     conn.request("PUT", "/inventory/Pop", headers=headers)
     response = conn.getresponse()
-    _ = json.loads(response.read().decode())
+    json.loads(response.read().decode())
 
     assert response.status == 200, f"Expected 200, got {response.status}"
     assert response.getheader('X-Coins') == '0', f"Expected 0 x-coins, but got {response.getheader('X-Coins')} coins instead"
@@ -72,8 +71,8 @@ def test_return_change():
 
 if __name__ == "__main__":
     print("Running vend-o-tests...\n")
-    test("Add quarter", test_add_quarter)
     test("Purchase beverage", test_purchase_beverage)
     test("Get inventory", test_get_inventory)
     test("Get beverage inventory", test_get_beverage_inventory)
     test("Return change", test_return_change)
+    test("Add quarter", test_add_quarter)
