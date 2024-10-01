@@ -112,7 +112,7 @@ def purchase_beverage(beverage):
 
     if status != 200:
         resp = jsonify(data)  
-        resp.headers['X-Coins'] = str(data['change']) 
+        resp.headers['X-Coins'] = str(vendomatic.coin_count) 
         return resp, status
     else:
         resp = jsonify({'quantity': data['quantity']})
