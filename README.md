@@ -7,7 +7,7 @@ To stay true to the Marigold codebase, I created this API in Python and used Fla
 
 **to comment? or not to comment?** 
 
-You will also notice that there are no comments in my code- this is because I was once taught that comments does not equal clear/good code- instead, the style and orchestration of it does. I have written the code so that it is readable and friendly to other developers. Of course in production comments become quite necessary in large codebases with different developers programming styles and technqiues. I personally enjoy putting in comments but for the sake of and 'cleanliness' I chose to not include them here.
+You will also notice that there are no comments in my code- this is because I was once taught that comments does not equal clear/good code- instead, the style and orchestration of it does. I have written the code so that it is readable and friendly to other developers. Of course in production comments become quite necessary in large codebases with different developers programming styles and technqiues. I personally enjoy putting in comments but due to the minute scale of this app and for the sake of 'cleanliness' I chose to not include them here.
 
 ### Features
 - Dynamic Inventory Management
