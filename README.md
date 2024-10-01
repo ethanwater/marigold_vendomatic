@@ -48,7 +48,7 @@ You can run the following commands in your terminal to interact with the API. *B
 Adds a single quarter to the vending machine. The total number of inserted quarters is returned in the response header (X-Coins).
 Changing the coin amount from 1 will produce an error.
 ```
-curl -X PUT http://localhost:8080/ -H "Content-Type: application/json" -d '{"coin": 1}'
+curl -X PUT http://localhost:8080/ -H "Content-Type: application/json" -d '{"coin": 1}' -i
 ```
 **Success**
 * Status Code: 204 No Content
@@ -61,7 +61,7 @@ curl -X PUT http://localhost:8080/ -H "Content-Type: application/json" -d '{"coi
 ### Return Change [DELETE]
 Returns all quarters inserted into the vending machine and resets the coin count.
 ```
-curl -X DELETE http://localhost:8080/
+curl -X DELETE http://localhost:8080/ -i
 ```
 **Success**
 * Status Code: 204 No Content
@@ -76,7 +76,7 @@ Fetches the current inventory for all available beverages.
 
 **note**: *when implementing the API, i noticed that simply returning an array of integers to reprsent the inventory was too vague. I went with the more friendly and verbose approach of displaying the beverage name alongside it's quantity.*
 ```
-curl -X GET http://localhost:8080/inventory
+curl -X GET http://localhost:8080/inventory -i
 ```
 **Success**
 * Status Code: 200 OK
@@ -89,7 +89,7 @@ curl -X GET http://localhost:8080/inventory
 ### Get Inventory for Specific Beverage [GET /inventory/{beverage_id}]
 Fetches the quantity available for a specific beverage (ids: Pop, Coffee, or Water).
 ```
-curl -X GET http://localhost:8080/inventory/Pop
+curl -X GET http://localhost:8080/inventory/Pop -i
 ```
 **Success**
 * Status Code: 200 OK
@@ -102,7 +102,7 @@ curl -X GET http://localhost:8080/inventory/Pop
 Attempts to purchase a specified beverage (Pop, Coffee, or Water). The API requires two quarters (inserted via the PUT / endpoint) to dispense a beverage.
 
 ```
-curl -X PUT http://localhost:8080/inventory/Pop
+curl -X PUT http://localhost:8080/inventory/Pop -i
 ```
 **Success**:
 - X-Coins: Remaining change.
