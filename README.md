@@ -15,6 +15,31 @@ To stay true to the Marigold codebase, I created this API in Python and used Fla
 - Purchase and dispense a beverage
 - Return change
 
+## Installation
+
+### Prerequisites
+- Python 3.x installed
+- Flask installed (pip3 install flask) 
+
+
+### Steps to Run:
+1. Clone the repository or copy the script in desired directory
+```
+git clone https://github.com/ethanwater/marigold_vendomatic.git
+```
+2. Install dependencies (we only use Flask here)
+```
+pip3 install flask
+```
+or...
+```
+pip3 install -r requirements.txt
+```
+2. Run the Flask application:
+```
+python3 app.py
+```
+The app will be available on http://localhost:8080/.
 
 ## How to Use
 You can run the following commands in your terminal to interact with the API. *Be sure that the app is running.*
@@ -90,36 +115,14 @@ curl -X PUT http://localhost:8080/inventory/Pop
 - X-Coins: Number of coins to be accepted. || Number of coins (0/1)
 
 
-## Installation
 
-### Prerequisites
-- Python 3.x installed
-- Flask installed (pip3 install flask) 
-
-
-### Steps to Run:
-1. Clone the repository or copy the script in desired directory
-```
-git clone https://github.com/ethanwater/marigold_vendomatic.git
-```
-2. Install dependencies (we only use Flask here)
-```
-pip3 install flask
-```
-or...
-```
-pip3 install -r requirements.txt
-```
-2. Run the Flask application:
-```
-python3 app.py
-```
-The app will be available on http://localhost:8080/.
 
 ## Testing
+**note:** *be sure to run the tests on a fresh start of the app, otherwise- it will fail*.
 To run the unit tests, simply run:
 ```
 python3 test.py
 ```
+
 
 **MIT License**
