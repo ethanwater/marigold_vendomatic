@@ -70,9 +70,10 @@ def test_return_change():
     assert response.getheader('X-Coins') == '1', f"Expected 0 x-coins, but got {response.getheader('X-Coins')} coins instead"
 
 if __name__ == "__main__":
-    print("Running vend-o-tests...\n")
-    test("Purchase beverage", test_purchase_beverage)
-    test("Get inventory", test_get_inventory)
-    test("Get beverage inventory", test_get_beverage_inventory)
-    test("Return change", test_return_change)
-    test("Add quarter", test_add_quarter)
+    print("🔬 running vend-o-tests...\n")
+    test("1. Purchase beverage", test_purchase_beverage)
+    test("2. Get inventory", test_get_inventory)
+    test("3. Get beverage inventory", test_get_beverage_inventory)
+    test("4. Return change", test_return_change)
+    test("5. Add quarter", test_add_quarter)
+    print("🔬 tests complete!")

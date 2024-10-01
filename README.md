@@ -5,9 +5,7 @@ The VendoMatic API simulates a vending machine that handles beverages and transa
 ### My Approach
 To stay true to the Marigold codebase, I created this API in Python and used Flask (this is the only dependency in the application). In terms of design, I used the Singleton design pattern since it is optimal for shared routing states and simply looks pretty. It was vital from the start to ensure that the inventory management system was scalable, resilient, and dynamic- so I designed the API from an "inventory-first" approach. I've also implemented unit tests to follow best-practices. If desired, both app.py and test.py can be implemented within an actions workflow, however that would be overkill for this demonstration. 
 
-**to comment? or not to comment?** 
-
-You will also notice that there are no comments in my code- this is because I was once taught that comments does not equal clear/good code- instead, the style and orchestration of it does. I have written the code so that it is readable and friendly to other developers. Of course in production comments become quite necessary in large codebases with different developers programming styles and technqiues. I personally enjoy putting in comments but due to the minute scale of this app and for the sake of 'cleanliness' I chose to not include them here.
+I usually enjoy writing comments, but due to the scale of the project and the amount of detail i included, i chose not to include them.
 
 ### Features
 - Dynamic Inventory Management
