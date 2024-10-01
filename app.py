@@ -27,23 +27,25 @@ class VendoMatic:
 
     def reset_coins(self):
         self.coin_count = 0
+    
+    def if_exists(self, beverage_name):
+        return beverage_name in self.beverages 
 
     def get_inventory(self):
         return [{"name": b.name, "quantity": b.quantity} for b in self.beverages.values()]
 
     def get_beverage_quantity(self, beverage):
-        target = self.beverages.get(beverage)
-        if target is None:
+        if not self.if_exists(beverage):
             raise ValueError(f"beverage doesn't exist!")
-
+        target = self.beverages.get(beverage)
         return target.quantity
         
-    def vend(self, beverage):
-        beverage = self.beverages.get(beverage)
-
-        if beverage is None:
+    def vend(self, beverage_name):
+        if not self.if_exists(beverage_name):
             logging.warning(f"vend::failed > invalid:NULL'")
             return None, {'error': 'beverage does not exist.'}, 400 
+
+        beverage = self.beverages[beverage_name]
         if beverage.quantity <= 0:
             logging.warning(f"vend::failed {beverage.name} > invalid:out of stock.")
             return None, {'error': f'{beverage.name} is out of stock.'}, 404 
@@ -62,18 +64,18 @@ class VendoMatic:
         }, 200  
     
 
-
 @app.route('/', methods=['PUT'])
 def add_coin():
     data = request.get_json()
-    if data.get('coin') == 1:
-        vendomatic.add_coin()  
-        resp = jsonify({"message": "cha-ching! added 1 coin"})
-        resp.headers['X-Coins'] = str(vendomatic.coin_count)
-        return resp, 204  
-    elif data.get('coin') != 1:
-        return jsonify({"error": "Invalid number of coins in the request body, must be 1"}), 400
-    else:
+    try:
+        if data.get('coin') == 1:
+            vendomatic.add_coin()  
+            resp = jsonify({"message": "cha-ching! added 1 coin"})
+            resp.headers['X-Coins'] = str(vendomatic.coin_count)
+            return resp, 204  
+        else:
+            return jsonify({"error": "Invalid number of coins in the request body, must be 1"}), 400
+    except:
         return jsonify({"error": "Missing 'coin' key in the request body."}), 400
 
 @app.route('/', methods=['DELETE'])
@@ -93,7 +95,7 @@ def get_inventory():
 @app.route('/inventory/<string:beverage>', methods=['GET'])
 def get_beverage_quantity(beverage):
     beverage = str(beverage).lower()
-    if beverage in vendomatic.beverages:
+    if vendomatic.if_exists(beverage):
         quantity = vendomatic.get_beverage_quantity(beverage)
         return jsonify(quantity), 200  
     else:
@@ -115,6 +117,7 @@ def purchase_beverage(beverage):
         resp.headers['X-Inventory-Remaining'] = str(data['inventory_remain'])
         vendomatic.reset_coins()
         return resp, status
+
 
 if __name__ == '__main__':
     vendomatic = VendoMatic()
