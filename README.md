@@ -118,7 +118,7 @@ curl -X PUT http://localhost:8080/inventory/Pop -i
 
 
 ## Testing
-**note:** *be sure to run the tests on a fresh start of the app, otherwise- it will fail*.
+**note:** *be sure to run the tests on a fresh start of the flask app in another terminal window, otherwise- it will fail*.
 To run the unit tests, simply run:
 ```
 python3 test.py
